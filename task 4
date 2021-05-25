@@ -1,0 +1,73 @@
+using System;
+
+namespace Лабораторні_завдання
+{
+    class Program
+    {
+        static float[,] getMatrix(int rowCount)
+        {
+            float[,] arr = new float[rowCount, rowCount];
+            Random rand = new Random(DateTime.Now.Millisecond);
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    arr[i, j] = rand.Next(-10, 20);
+                }
+            }
+            return arr;
+        }
+
+        static void printMatrix(float[,] arr)
+        {
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    Console.Write("{0,7:f}  ", arr[i, j]);
+                }
+                Console.WriteLine();
+            }
+        }
+        static float[,] sortColumnMatr(float[,] matr, int column)
+        {
+            for (int i = 0; i < matr.GetLength(0) - 1; i++)
+            {
+
+                int indexMax = i;
+                for (int j = i + 1; j < matr.GetLength(0); j++)
+                {
+                    if (matr[column, i] > matr[column, i])
+                        indexMax = i;
+                }
+
+                if (i != indexMax)
+                {
+                    float z = matr[i, column];
+                    matr[i, column] = matr[indexMax, column];
+                    matr[indexMax, column] = z;
+                }
+            }
+            return matr;
+        }
+
+        static float[,] sortColumns(float[,] matr)
+        {
+            for (int i = 1; i < matr.GetLength(1); i += 2)
+            {
+                sortColumnMatr(matr, i);
+            }
+            return matr;
+        }
+        static void Main(string[] args)
+        {
+            Console.Write("Кількість рядків та стовбців: ");
+            int r = Convert.ToInt32(Console.ReadLine());
+            float[,] matrix = getMatrix(r);
+            printMatrix(matrix);
+            Console.WriteLine("Посортована матриця");
+            float[,] sortedMatr = sortColumns(matrix);
+            printMatrix(sortedMatr);
+        }
+    }
+}
