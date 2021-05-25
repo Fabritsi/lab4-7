@@ -1,0 +1,40 @@
+using System;
+
+namespace Лабораторні_завдання
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("n=");
+            int n = Convert.ToInt32(Console.ReadLine());
+            int[,] arr = new int[n, n];
+            Random rand = new Random();
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    arr[i, j] = rand.Next(-10, 10);
+                    Console.Write(arr[i, j] + "\t");
+
+                }
+                Console.WriteLine();
+            }
+
+            int[,] arr2 = new int[n, n];
+            Random rand = new Random();
+            for (int a = 0; a < n; a++)
+            {
+                for (int b = 0; b < n; b++)
+                {
+                    arr2[a, b] = rand.Next(-10, 10);
+                    Console.Write(arr2[a, b] + "\t");
+
+                }
+                Console.WriteLine();
+            }
+
+            /* C = A+B */
+        }
+    }
+}
